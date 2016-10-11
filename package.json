@@ -2,6 +2,7 @@
   "name": "web-avanzado",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://IIC3585-2016-2.github.io/react-redux",
   "devDependencies": {
     "react-scripts": "0.6.1"
   },
