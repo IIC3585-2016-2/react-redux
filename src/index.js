@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
 // Constants
 const ADD_TODO = 'ADD_TODO';
@@ -41,7 +43,10 @@ const reducers = combineReducers({
 const INITIAL_STATE = {
   todos: ['Aprender Redux', 'Dominar el mundo'],
 };
-const store = createStore(reducers, INITIAL_STATE);
+const devTools = window.devToolsExtension ? window.devToolsExtension() : () => {};
+const logger = createLogger();
+const enhancer = compose(applyMiddleware(thunk, logger), devTools);
+const store = createStore(reducers, INITIAL_STATE, enhancer);
 
 // console.log('store:', store.getState());
 // > store: Object {todos: Array[0]}
