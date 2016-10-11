@@ -102,7 +102,9 @@ mapDispatchToProps = (dispatch) => ({
     dispatch(removeTodoAction(index));
   },
 });
-mapStateToProps = (state) => state;
+mapStateToProps = (state) => ({
+  todos: state.todos,
+});
 const ReduxApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 // Form Container (smart) component
